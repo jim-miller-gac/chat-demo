@@ -1,5 +1,6 @@
 /node_modules
 publish.bat
+adaptable.bat
 package-lock.json
 index.js
 chat-example-master.zip
