@@ -21,8 +21,19 @@ app.get('/', function(req, res) {
 */
 
 io.on('connection', (socket) => {
-   console.log('new connection, chat-demo, server.js');
+   console.log('new connection in chat-demo, server.js, ' + socket.id);
+   
+   var logoffTimer;
+   
    socket.on('chat message', msg => {
+      // set a timer that will log off an idle (not chatty) user
+      clearTimeout( logoffTimer);
+      logoffTimer = setTimeout(function(){
+         socket.emit('chat message', 'idle socket disconnected, ' + socket.id);
+         console.log('idle socket disconnected, ' + socket.id);
+         socket.disconnect();
+      }, 1 * 30 * 1000);
+      
       io.emit('chat message', msg);
    });
 });
