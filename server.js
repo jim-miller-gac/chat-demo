@@ -26,13 +26,14 @@ io.on('connection', (socket) => {
    var logoffTimer;
    
    socket.on('chat message', msg => {
-      // set a timer that will log off an idle (not chatty) user
+      // set (reset) a timer that will log off an idle (not chatty) user
       clearTimeout( logoffTimer);
       logoffTimer = setTimeout(function(){
-         socket.emit('chat message', 'idle socket disconnected, ' + socket.id);
-         console.log('idle socket disconnected, ' + socket.id);
+         let disconnectNotice = 'idle socket disconnected (id=' + socket.id + ')';
+         socket.emit('chat message', disconnectNotice);
+         console.log( disconnectNotice);
          socket.disconnect();
-      }, 1 * 30 * 1000);
+      }, 15 * 60 * 1000); // 15 minutes
       
       io.emit('chat message', msg);
    });
