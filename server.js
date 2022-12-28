@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
          socket.emit('chat message', disconnectNotice);
          console.log( disconnectNotice);
          socket.disconnect();
-      }, 1 * 60 * 1000); // 15 minutes
+      }, 1 * 30 * 1000); // 5 60 
       
       io.emit('chat message', msg);
    });
