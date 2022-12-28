@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
    var logoffTimer;
    function setTimer() {
       logoffTimer = setTimeout( () => {
-         let disconnectNotice = 'Idle for 25s; socket disconnected.';
+         let disconnectNotice = 'Idle for 15min; socket disconnected.';
          let idString = ' (id=' + socket.id + ')';
          socket.emit('chat message', disconnectNotice);
          console.log( disconnectNotice + idString);
