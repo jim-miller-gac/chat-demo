@@ -23,37 +23,26 @@ app.get('/', function(req, res) {
 io.on('connection', (socket) => {
    console.log('new connection in chat-demo, server.js, ' + socket.id);
    
-   /*
-   */
-   setTimeout( () => { socket.emit('chat message', ' 5s'); },  5 * 1000);
-   setTimeout( () => { socket.emit('chat message', '10s'); }, 10 * 1000);
-   setTimeout( () => { socket.emit('chat message', '15s'); }, 15 * 1000);
-   setTimeout( () => { socket.emit('chat message', '20s'); }, 20 * 1000);
-   setTimeout( () => { socket.emit('chat message', '25s'); }, 25 * 1000);
-   setTimeout( () => { socket.emit('chat message', '30s'); }, 30 * 1000);
-   setTimeout( () => { socket.emit('chat message', '35s'); }, 35 * 1000);
-   setTimeout( () => { socket.emit('chat message', '40s'); }, 40 * 1000);
-   
    // timer that will log off an idle client
    var logoffTimer;
    function setTimer() {
       logoffTimer = setTimeout( () => {
-         let disconnectNotice = 'idle socket disconnected (25s)';
+         let disconnectNotice = 'idle for 25s, socket disconnected';
          let idString = ' (id=' + socket.id + ')';
          socket.emit('chat message', disconnectNotice);
          console.log( disconnectNotice + idString);
          socket.disconnect();
-      }, 1 * 25 * 1000); // 5y 60n 30n 10y 15y 25n 20n
+      }, 1 * 25 * 1000);
    }
    
-   //setTimer();
+   setTimer();
    
    socket.on('chat message', msg => {
       
-      //clearTimeout( logoffTimer);
-      //setTimer();
+      clearTimeout( logoffTimer);
+      setTimer();
       
-      //io.emit('chat message', msg);
+      io.emit('chat message', msg);
    });
 });
 
