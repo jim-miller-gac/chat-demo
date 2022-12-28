@@ -34,6 +34,8 @@ io.on('connection', (socket) => {
    setTimeout( () => { socket.emit('chat message', '40s'); }, 40 * 1000);
    */
    
+   
+   // timer that will log off an idle client
    var logoffTimer;
    function setTimer() {
       logoffTimer = setTimeout( () => {
@@ -41,15 +43,15 @@ io.on('connection', (socket) => {
          socket.emit('chat message', disconnectNotice);
          console.log( disconnectNotice);
          socket.disconnect();
-      }, 1 * 15 * 1000); // 5ky 60n 30n 10y 15y 25n 20n
+      }, 1 * 25 * 1000); // 5ky 60n 30n 10y 15y 25n 20n
    }
    
    setTimer();
    
    socket.on('chat message', msg => {
-      // set (reset) a timer that will log off an idle (not chatty) user
       clearTimeout( logoffTimer);
       setTimer();
+      
       io.emit('chat message', msg);
    });
 });
