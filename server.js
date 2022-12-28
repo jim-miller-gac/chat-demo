@@ -23,6 +23,7 @@ app.get('/', function(req, res) {
 io.on('connection', (socket) => {
    console.log('new connection in chat-demo, server.js, ' + socket.id);
    
+   /*
    setTimeout( () => { socket.emit('chat message', ' 5s'); },  5 * 1000);
    setTimeout( () => { socket.emit('chat message', '10s'); }, 10 * 1000);
    setTimeout( () => { socket.emit('chat message', '15s'); }, 15 * 1000);
@@ -31,6 +32,7 @@ io.on('connection', (socket) => {
    setTimeout( () => { socket.emit('chat message', '30s'); }, 30 * 1000);
    setTimeout( () => { socket.emit('chat message', '35s'); }, 35 * 1000);
    setTimeout( () => { socket.emit('chat message', '40s'); }, 40 * 1000);
+   */
    
    var logoffTimer;
    
