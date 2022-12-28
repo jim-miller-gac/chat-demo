@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
          socket.emit('chat message', disconnectNotice);
          console.log( disconnectNotice + idString);
          socket.disconnect();
-      }, 25 * 1000);
+      }, 15 * 60 * 1000);
    }
    
    setTimer();
