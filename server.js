@@ -18,12 +18,12 @@ io.on('connection', (socket) => {
    function setTimer( reset) {
       if (reset) clearTimeout( logoffTimer);
       logoffTimer = setTimeout( () => {
-         let disconnectNotice = 'Idle for 15min. Socket disconnected.';
+         let disconnectNotice = 'Idle for 25s. Socket disconnected.';
          let idString = ' (id=' + socket.id + ')';
          socket.emit('chat message', disconnectNotice);
          console.log( disconnectNotice + idString);
          socket.disconnect();
-      }, 15 * 60 * 1000);
+      }, 1 * 25 * 1000);
    }
    setTimer(false);
    
