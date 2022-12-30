@@ -1,7 +1,7 @@
 {
-  "name": "node-socket-PET",
+  "name": "node-socketio-chat",
   "version": "1.0.0",
-  "description": "Springs and Pucks, node.js with socket.io.",
+  "description": "chat demo, node.js with socket.io.",
   "engines": {},
   "scripts": {
     "start": "node server.js"
